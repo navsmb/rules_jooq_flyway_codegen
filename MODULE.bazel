@@ -13,7 +13,6 @@ maven.install(
         "mysql:mysql-connector-java:8.0.21",
         "org.flywaydb:flyway-core",
         "org.flywaydb:flyway-database-postgresql",
-        "org.flywaydb:flyway-commandline:11.17.2",
         "org.flywaydb:flyway-mysql",
         "org.jooq:jooq",
         "org.jooq:jooq-codegen",

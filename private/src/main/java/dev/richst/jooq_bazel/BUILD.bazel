@@ -13,7 +13,6 @@ java_library(
     visibility = ["//visibility:public"],
     deps = [
         artifact("mysql:mysql-connector-java", "rules_jooq_flyway_codegen_maven"),
-        artifact("org.flywaydb:flyway-commandline", "rules_jooq_flyway_codegen_maven"),
         artifact("org.flywaydb:flyway-core", "rules_jooq_flyway_codegen_maven"),
         artifact("org.flywaydb:flyway-database-postgresql", "rules_jooq_flyway_codegen_maven"),
         artifact("org.flywaydb:flyway-mysql", "rules_jooq_flyway_codegen_maven"),

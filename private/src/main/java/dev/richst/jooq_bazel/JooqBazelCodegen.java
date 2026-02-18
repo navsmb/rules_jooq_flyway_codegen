@@ -73,16 +73,14 @@ public class JooqBazelCodegen {
 
     private static void prepareDatabase(JdbcProvider jdbcContainer) {
         jdbcContainer.start();
-//        final org.flywaydb.commandline.configuration.CommandLineArguments commandLineArguments = new org.flywaydb.commandline.configuration.CommandLineArguments(PLUGIN_REGISTER, args);
-//        commandLineArguments.validate();
-//
-//        var configuration  = new org.flywaydb.commandline.configuration.ConfigurationManagerImpl().getConfiguration(commandLineArguments);
-//        Flyway.configure(configuration.getClassLoader()).configuration(configuration)
-//                .dataSource(
-//                        jdbcContainer.getJdbcUrl(),
-//                        jdbcContainer.getUsername(),
-//                        jdbcContainer.getPassword())
-//                .load().migrate();
+        Flyway flyway =
+                Flyway.configure()
+                        .dataSource(
+                                jdbcContainer.getJdbcUrl(),
+                                jdbcContainer.getUsername(),
+                                jdbcContainer.getPassword())
+                        .load();
+        flyway.migrate();
     }
 
     private static Jdbc buildJdbcConfig(JdbcProvider jdbcContainer) {
