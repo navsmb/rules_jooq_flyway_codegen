@@ -1,4 +1,4 @@
-package rules_jooq_flyway_codegen.src.dev.richst.jooq_bazel;
+package dev.richst.jooq_bazel;
 
 import org.flywaydb.core.Flyway;
 import org.jooq.codegen.GenerationTool;
@@ -73,14 +73,16 @@ public class JooqBazelCodegen {
 
     private static void prepareDatabase(JdbcProvider jdbcContainer) {
         jdbcContainer.start();
-        Flyway flyway =
-                Flyway.configure()
-                        .dataSource(
-                                jdbcContainer.getJdbcUrl(),
-                                jdbcContainer.getUsername(),
-                                jdbcContainer.getPassword())
-                        .load();
-        flyway.migrate();
+//        final org.flywaydb.commandline.configuration.CommandLineArguments commandLineArguments = new org.flywaydb.commandline.configuration.CommandLineArguments(PLUGIN_REGISTER, args);
+//        commandLineArguments.validate();
+//
+//        var configuration  = new org.flywaydb.commandline.configuration.ConfigurationManagerImpl().getConfiguration(commandLineArguments);
+//        Flyway.configure(configuration.getClassLoader()).configuration(configuration)
+//                .dataSource(
+//                        jdbcContainer.getJdbcUrl(),
+//                        jdbcContainer.getUsername(),
+//                        jdbcContainer.getPassword())
+//                .load().migrate();
     }
 
     private static Jdbc buildJdbcConfig(JdbcProvider jdbcContainer) {

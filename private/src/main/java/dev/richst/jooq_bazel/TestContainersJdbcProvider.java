@@ -1,4 +1,4 @@
-package rules_jooq_flyway_codegen.src.dev.richst.jooq_bazel;
+package dev.richst.jooq_bazel;
 
 import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.utility.DockerImageName;

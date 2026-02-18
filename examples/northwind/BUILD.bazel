@@ -1,0 +1,50 @@
+load("@contrib_rules_jvm//java:defs.bzl", "java_binary", "java_library")
+load("@rules_jooq_flyway_codegen//:defs.bzl", "jooqflyway")
+load("@rules_jvm_external//:defs.bzl", "artifact")
+
+java_binary(
+    name = "northwind",
+    main_class = "dev.richst.jooq_bazel_example.northwind.service.App",
+    runtime_deps = [
+        ":main",
+    ],
+)
+
+java_library(
+    name = "main",
+    srcs = glob(["src/main/java/**/*.java"]),
+    runtime_deps = [
+        artifact("org.slf4j:slf4j-simple"),
+    ],
+    deps = [
+        ":migration-jar",
+        ":northwind-db-classes",
+        artifact("com.google.code.gson:gson"),
+        artifact("com.sparkjava:spark-core"),
+        artifact("com.zaxxer:HikariCP"),
+        artifact("mysql:mysql-connector-java"),
+        artifact("org.flywaydb:flyway-core"),
+        artifact("org.jooq:jooq"),
+        artifact("org.jooq:jooq-meta"),
+        artifact("org.testcontainers:testcontainers"),
+        artifact("org.testcontainers:testcontainers-mysql"),
+    ],
+)
+
+java_library(
+    name = "migration-jar",
+    resources = glob(["src/main/resources/db/migration/*.sql"]),
+    visibility = ["//visibility:private"],
+)
+
+jooqflyway(
+    name = "northwind-db-classes",
+    codegen_xml = "codegen.xml",
+    db_type = "mysql",
+    migration_jar = ":migration-jar",
+    visibility = ["//visibility:private"],
+    deps = [
+        artifact("org.jooq:jooq"),
+        artifact("org.jooq:jooq-meta"),
+    ],
+)
