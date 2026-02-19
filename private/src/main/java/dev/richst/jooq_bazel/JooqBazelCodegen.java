@@ -1,112 +1,168 @@
 package dev.richst.jooq_bazel;
 
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+import org.flywaydb.commandline.configuration.CommandLineArguments;
+import org.flywaydb.commandline.configuration.ConfigurationManagerImpl;
 import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.configuration.FluentConfiguration;
+import org.flywaydb.core.internal.plugin.PluginRegister;
 import org.jooq.codegen.GenerationTool;
 import org.jooq.meta.jaxb.Configuration;
 import org.jooq.meta.jaxb.Jdbc;
-import org.testcontainers.containers.MariaDBContainer;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.mariadb.MariaDBContainer;
+import org.testcontainers.mysql.MySQLContainer;
+import org.testcontainers.postgresql.PostgreSQLContainer;
+import org.testcontainers.utility.DockerImageName;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
+import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Map;
 
 public class JooqBazelCodegen {
+    enum DbType {POSTGRES, MYSQL, MARIADB, SQLITE}
+
+    @Parameter(names = "--output_file_name", required = true)
+    Path outputSourceJar;
+    @Parameter(names = "--docker_image")
+    String dockerImage;
+
+    @Parameter(names = "--db_type", required = true)
+    DbType dbContainerType;
+
+    @Parameter(names = "--jooq_config_xml_path", required = true)
+    File jooqConfigXmlPath;
+
+    @Parameter(names = "--flyway_config_file_path")
+    String flywayConfigPath;
+
     public static void main(String[] argv) throws Exception {
-        if (argv.length != 4) {
-            System.err.println("ERR: Codegen params missing");
-            System.exit(1);
-        }
+        var main = new JooqBazelCodegen();
+        JCommander.newBuilder()
+                .addObject(main)
+                .build()
+                .parse(argv);
 
-        String outputSourceJar = argv[0];
-        String dbContainerType = argv[1];
-        String dockerImage = argv[2];
-        String codeGenConfigXmlPath = argv[3];
+        main.run();
+    }
 
-        Path path = Files.createTempDirectory("jooq-codegen");
-        try (JdbcProvider jdbcContainer = newJdbcContainerOfType(dbContainerType, dockerImage)) {
-            prepareDatabase(jdbcContainer);
+    private void run() throws IOException {
+        Path codegenOutputDir = Files.createTempDirectory("jooq-codegen");
+        try (JdbcProvider jdbcContainer = getJDBCDatabase()) {
+            migrateWithFlyway(jdbcContainer);
 
-            Jdbc jdbc = buildJdbcConfig(jdbcContainer);
 
             Configuration configuration =
-                    buildGenerationToolConfigurationWithOverrides(codeGenConfigXmlPath, jdbc, path);
+                    configureJooq(jdbcContainer, codegenOutputDir);
+            // generate code with jOOQ
             new GenerationTool().run(configuration);
 
-            ZipUtil zipUtil = new ZipUtil();
-            zipUtil.zipDirectory(path.toFile(), outputSourceJar);
+            createSrcJar(codegenOutputDir);
         } catch (Exception ex) {
             ex.printStackTrace(System.err);
             System.exit(1);
         } finally {
-            recursiveDeleteOnExit(path);
+            recursiveDeleteOnExit(codegenOutputDir);
         }
     }
 
-    private static JdbcProvider newJdbcContainerOfType(String dbContainerType, String dockerImage) {
-        if ("postgres".equals(dbContainerType)) {
-            return  TestContainersJdbcProvider.forClass(PostgreSQLContainer.class, dockerImage, PostgreSQLContainer.IMAGE);
-        } else if ("mariadb".equals(dbContainerType)) {
-            return  TestContainersJdbcProvider.forClass(MariaDBContainer.class, dockerImage, "mariadb");
-        } else if ("mysql".equals(dbContainerType)) {
-            return TestContainersJdbcProvider.forClass(MySQLContainer.class, dockerImage, MySQLContainer.IMAGE);
-        } else if ("sqlite".equals(dbContainerType)) {
+    private JdbcProvider getJDBCDatabase() {
+        if (dbContainerType == DbType.SQLITE) {
             return new SqliteJdbcProvider();
-        } else {
-            throw new IllegalArgumentException("Unrecognised JDBC container type");
         }
+        var container = switch (dbContainerType) {
+            case POSTGRES -> new PostgreSQLContainer(resolveContainer(dockerImage, PostgreSQLContainer.IMAGE));
+            case MYSQL -> new MySQLContainer(resolveContainer(dockerImage, MySQLContainer.NAME));
+            case MARIADB -> new MariaDBContainer(resolveContainer(dockerImage, MariaDBContainer.NAME));
+            case SQLITE -> throw new IllegalStateException("already returned");
+        };
+        return new TestContainersJdbcProvider(container).start();
     }
 
-    private static Configuration buildGenerationToolConfigurationWithOverrides(
-            String codeGenConfigXmlPath, Jdbc jdbc, Path path) throws IOException {
+    private DockerImageName resolveContainer(String dockerImage, String compatibleImageName) {
+        DockerImageName compatibleImage = DockerImageName.parse(compatibleImageName);
+        if (dockerImage == null) {
+            return compatibleImage;
+        }
+        return DockerImageName.parse(dockerImage).asCompatibleSubstituteFor(compatibleImage);
+    }
+
+    private Configuration configureJooq(
+            JdbcProvider jdbcContainer, Path codegenOutputDir) throws IOException {
         Configuration configuration =
-                GenerationTool.load(new FileInputStream(codeGenConfigXmlPath));
-        configuration.getGenerator().getTarget().setDirectory(path.toAbsolutePath().toString());
-        configuration.setJdbc(jdbc);
-        return configuration;
-    }
+                GenerationTool.load(new FileInputStream(jooqConfigXmlPath));
+        configuration.getGenerator().getTarget().setDirectory(codegenOutputDir.toAbsolutePath().toString());
 
-    private static void prepareDatabase(JdbcProvider jdbcContainer) {
-        jdbcContainer.start();
-        Flyway flyway =
-                Flyway.configure()
-                        .dataSource(
-                                jdbcContainer.getJdbcUrl(),
-                                jdbcContainer.getUsername(),
-                                jdbcContainer.getPassword())
-                        .load();
-        flyway.migrate();
-    }
-
-    private static Jdbc buildJdbcConfig(JdbcProvider jdbcContainer) {
         Jdbc jdbc = new Jdbc();
         jdbc.setDriver(jdbcContainer.getDriverClassName());
         jdbc.setUrl(jdbcContainer.getJdbcUrl());
         jdbc.setUser(jdbcContainer.getUsername());
         jdbc.setPassword(jdbcContainer.getPassword());
-        return jdbc;
+        configuration.setJdbc(jdbc);
+        return configuration;
     }
 
-    public static void recursiveDeleteOnExit(Path path) throws IOException {
+    private void migrateWithFlyway(JdbcProvider jdbcContainer) {
+        FluentConfiguration flyway;
+        if (flywayConfigPath != null) {
+            String[] args = new String[]{String.format("-configFiles=%s", flywayConfigPath)};
+            var commandLineArguments = new CommandLineArguments(new PluginRegister(), args);
+            commandLineArguments.validate();
+
+            var configuration = new ConfigurationManagerImpl().getConfiguration(commandLineArguments);
+
+            flyway = Flyway.configure(configuration.getClassLoader()).configuration(configuration);
+        } else {
+            flyway = Flyway.configure();
+        }
+        flyway.dataSource(
+                        jdbcContainer.getJdbcUrl(),
+                        jdbcContainer.getUsername(),
+                        jdbcContainer.getPassword())
+                .load()
+                .migrate();
+    }
+
+    private void recursiveDeleteOnExit(Path path) throws IOException {
         Files.walkFileTree(
                 path,
-                new SimpleFileVisitor<Path>() {
+                new SimpleFileVisitor<>() {
                     @Override
-                    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                        file.toFile().deleteOnExit();
+                    public FileVisitResult visitFile(Path file, BasicFileAttributes unused) throws IOException {
+                        Files.deleteIfExists(file);
                         return FileVisitResult.CONTINUE;
                     }
 
                     @Override
-                    public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
-                        dir.toFile().deleteOnExit();
+                    public FileVisitResult postVisitDirectory(Path dir, IOException unused) throws IOException {
+                        Files.deleteIfExists(dir);
                         return FileVisitResult.CONTINUE;
                     }
                 });
+    }
+
+    private void createSrcJar(Path codegenDir) throws IOException {
+        try (var zipFs = FileSystems.newFileSystem(outputSourceJar, Map.of("create","true"))) {
+            Files.walkFileTree(codegenDir, new SimpleFileVisitor<>() {
+
+                @Override
+                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+                        throws IOException {
+                    Files.createDirectories(zipFs.getPath(codegenDir.relativize(dir).toString()));
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+                        throws IOException {
+                    Files.copy(file, zipFs.getPath(codegenDir.relativize(file).toString()));
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+
+        }
     }
 }

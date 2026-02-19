@@ -10,7 +10,9 @@ maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     name = "rules_jooq_flyway_codegen_maven",
     artifacts = [
+        "com.beust:jcommander:1.82",
         "mysql:mysql-connector-java:8.0.21",
+        "org.flywaydb:flyway-commandline:11.17.2",
         "org.flywaydb:flyway-core",
         "org.flywaydb:flyway-database-postgresql",
         "org.flywaydb:flyway-mysql",

@@ -8,11 +8,12 @@ java_library(
         "JooqBazelCodegen.java",
         "SqliteJdbcProvider.java",
         "TestContainersJdbcProvider.java",
-        "ZipUtil.java",
     ],
     visibility = ["//visibility:public"],
     deps = [
+        artifact("com.beust:jcommander", "rules_jooq_flyway_codegen_maven"),
         artifact("mysql:mysql-connector-java", "rules_jooq_flyway_codegen_maven"),
+        artifact("org.flywaydb:flyway-commandline", "rules_jooq_flyway_codegen_maven"),
         artifact("org.flywaydb:flyway-core", "rules_jooq_flyway_codegen_maven"),
         artifact("org.flywaydb:flyway-database-postgresql", "rules_jooq_flyway_codegen_maven"),
         artifact("org.flywaydb:flyway-mysql", "rules_jooq_flyway_codegen_maven"),

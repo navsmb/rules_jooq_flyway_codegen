@@ -39,8 +39,9 @@ java_library(
 
 jooqflyway(
     name = "northwind-db-classes",
-    codegen_xml = "codegen.xml",
     db_type = "mysql",
+    #     flyway_config = "flyway.toml",
+    jooq_config = "codegen.xml",
     migration_jar = ":migration-jar",
     visibility = ["//visibility:private"],
     deps = [

@@ -15,8 +15,9 @@ public class SqliteJdbcProvider implements JdbcProvider {
     }
 
     @Override
-    public void start() {
+    public JdbcProvider start() {
 
+        return this;
     }
 
     @Override
@@ -40,6 +41,6 @@ public class SqliteJdbcProvider implements JdbcProvider {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
     }
 }
