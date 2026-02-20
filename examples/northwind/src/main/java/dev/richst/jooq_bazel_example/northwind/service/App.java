@@ -3,18 +3,14 @@ package dev.richst.jooq_bazel_example.northwind.service;
 import com.google.gson.Gson;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
-import dev.richst.jooq_bazel_example.northwind.db.*;
 import dev.richst.jooq_bazel_example.northwind.db.test.tables.Employees;
 import dev.richst.jooq_bazel_example.northwind.db.test.tables.records.EmployeesRecord;
-
 import org.flywaydb.core.Flyway;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 import org.testcontainers.containers.MySQLContainer;
-
-import spark.Spark;
+import spark.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,18 +20,25 @@ public class App {
 
     public static void main(String[] argv) {
         try {
-            DSLContext dsl = startAndMigrateDb();
-            registerUrls(dsl);
+            new App().run(-1); //use default port
         } catch (Exception e) {
             System.out.println("Exception on startup");
             e.printStackTrace();
         }
     }
 
-    private static void registerUrls(DSLContext dsl) {
-        System.out.println("registering urls");
+    public Service run(int port) {
+        DSLContext dsl = startAndMigrateDb();
+        return registerUrls(port, dsl);
+    }
 
-        Spark.get(
+    private Service registerUrls(int port, DSLContext dsl) {
+        System.out.println("registering urls");
+        var spark = Service.ignite();
+        if (port >= 0) {
+            spark.port(port);
+        }
+        spark.get(
                 "/api/employees",
                 (req, res) -> {
                     res.type("application/json");
@@ -45,7 +48,7 @@ public class App {
                                             .map(r -> r.intoMap())
                                             .collect(Collectors.toList()));
                 });
-        Spark.post(
+        spark.post(
                 "/api/employees",
                 (req, res) -> {
                     res.type("application/json");
@@ -59,9 +62,11 @@ public class App {
                     employeesRecord.store();
                     return new Gson().toJson(employeesRecord.intoMap());
                 });
+        spark.awaitInitialization();
+        return spark;
     }
 
-    private static DSLContext startAndMigrateDb() throws Exception {
+    private DSLContext startAndMigrateDb() {
         System.out.println("starting db");
         MySQLContainer dbContainer = new MySQLContainer<>();
         dbContainer.start();

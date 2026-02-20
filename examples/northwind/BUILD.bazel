@@ -1,4 +1,4 @@
-load("@contrib_rules_jvm//java:defs.bzl", "java_binary", "java_library")
+load("@contrib_rules_jvm//java:defs.bzl", "java_binary", "java_library", "java_test_suite")
 load("@rules_jooq_flyway_codegen//:defs.bzl", "jooqflyway")
 load("@rules_jvm_external//:defs.bzl", "artifact")
 
@@ -24,6 +24,7 @@ java_library(
         artifact("com.zaxxer:HikariCP"),
         artifact("mysql:mysql-connector-java"),
         artifact("org.flywaydb:flyway-core"),
+        artifact("org.flywaydb:flyway-mysql"),
         artifact("org.jooq:jooq"),
         artifact("org.jooq:jooq-meta"),
         artifact("org.testcontainers:testcontainers"),
@@ -47,5 +48,22 @@ jooqflyway(
     deps = [
         artifact("org.jooq:jooq"),
         artifact("org.jooq:jooq-meta"),
+    ],
+)
+
+java_test_suite(
+    name = "tests",
+    size = "small",
+    srcs = glob(["src/test/java/**/*.java"]),
+    runner = "junit5",
+    runtime_deps = [
+        artifact("org.junit.jupiter:junit-jupiter-engine"),
+        artifact("org.junit.platform:junit-platform-launcher"),
+        artifact("org.junit.platform:junit-platform-reporting"),
+    ],
+    deps = [
+        ":main",
+        artifact("org.assertj:assertj-core"),
+        artifact("org.junit.jupiter:junit-jupiter-api"),
     ],
 )
