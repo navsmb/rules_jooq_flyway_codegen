@@ -1,5 +1,4 @@
-Bazel rules for jOOQ codegen from Flyway migrations
-===================================================
+# Bazel rules for jOOQ codegen from Flyway migrations
 
 This Bazel rule will apply Flyway migrations to a database
 launched in a Testcontainer, use those to run jOOQ's code
@@ -14,6 +13,7 @@ Add the following to your `MODULE.bazel` file, setting the `version` to the late
 ```starlark
 bazel_dep(name = "rules_jvm_external", version = "...")
 ```
+
 The codegen rule takes as a parameter a resource jar containing your
 application's flyway migrations. Your directory structure should look
 something like this:
@@ -29,15 +29,16 @@ myservice/
 |> codegen.xml
 |> BUILD.bazel
 ```
+
 Note that migrations are under `db/migration`. This is needed because Flyway expects to find its migrations at
-a path in the form of `db/migration` by default. This can be overridden by supplying a `flyway.toml` file and 
+a path in the form of `db/migration` by default. This can be overridden by supplying a `flyway.toml` file and
 specifying a target for `flyway.locations`:
 
 ```toml
 [flyway]
 locations = ["classpath:db/migration"]
 ```
- 
+
 In the BUILD file, you can build a resource jar with your migrations as follows:
 
 ```starlark
@@ -49,8 +50,8 @@ java_library(
 ```
 
 Now you need to set up your `codegen.xml` file. This will be passed to jOOQ's code
-generator with only the output directory and JDBC configuration replaced. An [example codgen.xml file is here](./examples/northwind/codegen.xml),
-and the [jOOQ documentation for the codegen.xml file is here](https://www.jooq.org/doc/latest/manual/code-generation/codegen-configuration/). 
+generator with only the output directory and JDBC configuration replaced. An [example codegen.xml file is here](./examples/northwind/codegen.xml),
+and the [jOOQ documentation for the codegen.xml file is here](https://www.jooq.org/doc/latest/manual/code-generation/codegen-configuration/).
 
 Now that you have a resource jar containing your migrations, you can call the
 code generator like so:

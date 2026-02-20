@@ -1028,9 +1028,7 @@
       "org.reactivestreams:reactive-streams",
       "org.slf4j:slf4j-api"
     ],
-    "com.couchbase.client:java-client": [
-      "com.couchbase.client:core-io"
-    ],
+    "com.couchbase.client:java-client": ["com.couchbase.client:core-io"],
     "com.fasterxml.jackson.core:jackson-databind": [
       "com.fasterxml.jackson.core:jackson-annotations",
       "com.fasterxml.jackson.core:jackson-core"
@@ -1051,9 +1049,7 @@
       "com.fasterxml.jackson.core:jackson-core",
       "com.fasterxml.jackson.core:jackson-databind"
     ],
-    "com.fasterxml.woodstox:woodstox-core": [
-      "org.codehaus.woodstox:stax2-api"
-    ],
+    "com.fasterxml.woodstox:woodstox-core": ["org.codehaus.woodstox:stax2-api"],
     "com.github.docker-java:docker-java-api": [
       "com.fasterxml.jackson.core:jackson-annotations",
       "org.slf4j:slf4j-api"
@@ -1083,9 +1079,7 @@
       "com.nimbusds:nimbus-jose-jwt",
       "net.minidev:json-smart"
     ],
-    "io.netty:netty-buffer": [
-      "io.netty:netty-common"
-    ],
+    "io.netty:netty-buffer": ["io.netty:netty-common"],
     "io.netty:netty-codec": [
       "io.netty:netty-buffer",
       "io.netty:netty-codec-base",
@@ -1163,9 +1157,7 @@
       "io.netty:netty-handler",
       "io.netty:netty-transport"
     ],
-    "io.netty:netty-resolver": [
-      "io.netty:netty-common"
-    ],
+    "io.netty:netty-resolver": ["io.netty:netty-common"],
     "io.netty:netty-resolver-dns": [
       "io.netty:netty-buffer",
       "io.netty:netty-codec-base",
@@ -1279,35 +1271,21 @@
       "io.projectreactor.netty:reactor-netty-core",
       "io.projectreactor:reactor-core"
     ],
-    "io.projectreactor:reactor-core": [
-      "org.reactivestreams:reactive-streams"
-    ],
-    "io.r2dbc:r2dbc-spi": [
-      "org.reactivestreams:reactive-streams"
-    ],
+    "io.projectreactor:reactor-core": ["org.reactivestreams:reactive-streams"],
+    "io.r2dbc:r2dbc-spi": ["org.reactivestreams:reactive-streams"],
     "jakarta.xml.bind:jakarta.xml.bind-api": [
       "jakarta.activation:jakarta.activation-api"
     ],
-    "mysql:mysql-connector-java": [
-      "com.google.protobuf:protobuf-java"
-    ],
-    "net.java.dev.jna:jna-platform": [
-      "net.java.dev.jna:jna"
-    ],
-    "net.minidev:accessors-smart": [
-      "org.ow2.asm:asm"
-    ],
-    "net.minidev:json-smart": [
-      "net.minidev:accessors-smart"
-    ],
+    "mysql:mysql-connector-java": ["com.google.protobuf:protobuf-java"],
+    "net.java.dev.jna:jna-platform": ["net.java.dev.jna:jna"],
+    "net.minidev:accessors-smart": ["org.ow2.asm:asm"],
+    "net.minidev:json-smart": ["net.minidev:accessors-smart"],
     "org.apache.commons:commons-compress": [
       "commons-codec:commons-codec",
       "commons-io:commons-io",
       "org.apache.commons:commons-lang3"
     ],
-    "org.flywaydb:flyway-command-test-connection": [
-      "org.flywaydb:flyway-core"
-    ],
+    "org.flywaydb:flyway-command-test-connection": ["org.flywaydb:flyway-core"],
     "org.flywaydb:flyway-commandline": [
       "com.azure:azure-identity",
       "com.couchbase.client:java-client",
@@ -1364,24 +1342,12 @@
       "org.fusesource.jansi:jansi",
       "org.mongodb:mongodb-driver-sync"
     ],
-    "org.flywaydb:flyway-core": [
-      "com.fasterxml.jackson.core:jackson-databind"
-    ],
-    "org.flywaydb:flyway-database-cassandra": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-database-db2": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-database-derby": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-database-hsqldb": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-database-informix": [
-      "org.flywaydb:flyway-core"
-    ],
+    "org.flywaydb:flyway-core": ["com.fasterxml.jackson.core:jackson-databind"],
+    "org.flywaydb:flyway-database-cassandra": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-database-db2": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-database-derby": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-database-hsqldb": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-database-informix": ["org.flywaydb:flyway-core"],
     "org.flywaydb:flyway-database-nc-couchbase": [
       "com.couchbase.client:java-client",
       "org.flywaydb:flyway-core",
@@ -1392,56 +1358,30 @@
       "org.flywaydb:flyway-nc-core",
       "org.mongodb:mongodb-driver-sync"
     ],
-    "org.flywaydb:flyway-database-oceanbase": [
-      "org.flywaydb:flyway-mysql"
-    ],
-    "org.flywaydb:flyway-database-oracle": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-database-postgresql": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-database-redshift": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-database-saphana": [
-      "org.flywaydb:flyway-core"
-    ],
+    "org.flywaydb:flyway-database-oceanbase": ["org.flywaydb:flyway-mysql"],
+    "org.flywaydb:flyway-database-oracle": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-database-postgresql": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-database-redshift": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-database-saphana": ["org.flywaydb:flyway-core"],
     "org.flywaydb:flyway-database-snowflake": [
       "com.fasterxml.jackson.core:jackson-databind",
       "org.flywaydb:flyway-core"
     ],
-    "org.flywaydb:flyway-database-sybasease": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-database-tidb": [
-      "org.flywaydb:flyway-mysql"
-    ],
+    "org.flywaydb:flyway-database-sybasease": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-database-tidb": ["org.flywaydb:flyway-mysql"],
     "org.flywaydb:flyway-database-yugabytedb": [
       "org.flywaydb:flyway-database-postgresql"
     ],
-    "org.flywaydb:flyway-firebird": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-gcp-bigquery": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-gcp-spanner": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-locations-s3": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-mysql": [
-      "org.flywaydb:flyway-core"
-    ],
+    "org.flywaydb:flyway-firebird": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-gcp-bigquery": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-gcp-spanner": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-locations-s3": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-mysql": ["org.flywaydb:flyway-core"],
     "org.flywaydb:flyway-nc-callbacks": [
       "org.flywaydb:flyway-core",
       "org.flywaydb:flyway-nc-core"
     ],
-    "org.flywaydb:flyway-nc-core": [
-      "org.flywaydb:flyway-core"
-    ],
+    "org.flywaydb:flyway-nc-core": ["org.flywaydb:flyway-core"],
     "org.flywaydb:flyway-nc-scanners": [
       "org.flywaydb:flyway-core",
       "org.flywaydb:flyway-nc-core"
@@ -1454,9 +1394,7 @@
       "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
       "org.flywaydb:flyway-core"
     ],
-    "org.flywaydb:flyway-sqlserver": [
-      "org.flywaydb:flyway-core"
-    ],
+    "org.flywaydb:flyway-sqlserver": ["org.flywaydb:flyway-core"],
     "org.flywaydb:flyway-verb-baseline": [
       "org.flywaydb:flyway-core",
       "org.flywaydb:flyway-nc-core",
@@ -1499,20 +1437,13 @@
       "org.flywaydb:flyway-nc-callbacks",
       "org.flywaydb:flyway-nc-core"
     ],
-    "org.jooq:jooq": [
-      "io.r2dbc:r2dbc-spi"
-    ],
-    "org.jooq:jooq-codegen": [
-      "org.jooq:jooq",
-      "org.jooq:jooq-meta"
-    ],
+    "org.jooq:jooq": ["io.r2dbc:r2dbc-spi"],
+    "org.jooq:jooq-codegen": ["org.jooq:jooq", "org.jooq:jooq-meta"],
     "org.jooq:jooq-meta": [
       "jakarta.xml.bind:jakarta.xml.bind-api",
       "org.jooq:jooq"
     ],
-    "org.mongodb:bson-record-codec": [
-      "org.mongodb:bson"
-    ],
+    "org.mongodb:bson-record-codec": ["org.mongodb:bson"],
     "org.mongodb:mongodb-driver-core": [
       "org.mongodb:bson",
       "org.mongodb:bson-record-codec"
@@ -1521,9 +1452,7 @@
       "org.mongodb:bson",
       "org.mongodb:mongodb-driver-core"
     ],
-    "org.rnorth.duct-tape:duct-tape": [
-      "org.jetbrains:annotations"
-    ],
+    "org.rnorth.duct-tape:duct-tape": ["org.jetbrains:annotations"],
     "org.testcontainers:testcontainers": [
       "com.github.docker-java:docker-java-api",
       "com.github.docker-java:docker-java-transport-zerodep",
@@ -1696,9 +1625,9 @@
       "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.jsontype.impl",
       "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.module",
       "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.node",
-      "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.ser",
-      "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.ser.impl",
-      "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.ser.std",
+      "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.set",
+      "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.set.impl",
+      "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.set.std",
       "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.type",
       "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.util",
       "com.couchbase.client.core.deps.com.fasterxml.jackson.databind.util.internal",
@@ -1706,7 +1635,7 @@
       "com.couchbase.client.core.deps.com.fasterxml.jackson.module.afterburner.asm",
       "com.couchbase.client.core.deps.com.fasterxml.jackson.module.afterburner.asm.signature",
       "com.couchbase.client.core.deps.com.fasterxml.jackson.module.afterburner.deser",
-      "com.couchbase.client.core.deps.com.fasterxml.jackson.module.afterburner.ser",
+      "com.couchbase.client.core.deps.com.fasterxml.jackson.module.afterburner.set",
       "com.couchbase.client.core.deps.com.fasterxml.jackson.module.afterburner.util",
       "com.couchbase.client.core.deps.com.google.api",
       "com.couchbase.client.core.deps.com.google.apps.card.v1",
@@ -1929,7 +1858,7 @@
       "com.couchbase.client.java",
       "com.couchbase.client.java.analytics",
       "com.couchbase.client.java.batch",
-      "com.couchbase.client.java.cnc.evnts",
+      "com.couchbase.client.java.cnc.events",
       "com.couchbase.client.java.codec",
       "com.couchbase.client.java.datastructures",
       "com.couchbase.client.java.diagnostics",
@@ -2328,7 +2257,7 @@
       "com.databricks.internal.bouncycastle.jcajce.provider.asymmetric.ecgost12",
       "com.databricks.internal.bouncycastle.jcajce.provider.asymmetric.edec",
       "com.databricks.internal.bouncycastle.jcajce.provider.asymmetric.elgamal",
-      "com.databricks.internal.bouncycastle.jcajce.provider.asymmetric.gost",
+      "com.databricks.internal.bouncycastle.jcajce.provider.asymmetric.ghost",
       "com.databricks.internal.bouncycastle.jcajce.provider.asymmetric.ies",
       "com.databricks.internal.bouncycastle.jcajce.provider.asymmetric.mldsa",
       "com.databricks.internal.bouncycastle.jcajce.provider.asymmetric.mlkem",
@@ -2534,9 +2463,9 @@
       "com.databricks.internal.fasterxml.jackson.databind.jsontype.impl",
       "com.databricks.internal.fasterxml.jackson.databind.module",
       "com.databricks.internal.fasterxml.jackson.databind.node",
-      "com.databricks.internal.fasterxml.jackson.databind.ser",
-      "com.databricks.internal.fasterxml.jackson.databind.ser.impl",
-      "com.databricks.internal.fasterxml.jackson.databind.ser.std",
+      "com.databricks.internal.fasterxml.jackson.databind.set",
+      "com.databricks.internal.fasterxml.jackson.databind.set.impl",
+      "com.databricks.internal.fasterxml.jackson.databind.set.std",
       "com.databricks.internal.fasterxml.jackson.databind.type",
       "com.databricks.internal.fasterxml.jackson.databind.util",
       "com.databricks.internal.fasterxml.jackson.databind.util.internal",
@@ -2546,12 +2475,12 @@
       "com.databricks.internal.fasterxml.jackson.datatype.guava.deser.multimap.list",
       "com.databricks.internal.fasterxml.jackson.datatype.guava.deser.multimap.set",
       "com.databricks.internal.fasterxml.jackson.datatype.guava.deser.util",
-      "com.databricks.internal.fasterxml.jackson.datatype.guava.ser",
+      "com.databricks.internal.fasterxml.jackson.datatype.guava.set",
       "com.databricks.internal.fasterxml.jackson.datatype.jsr310",
       "com.databricks.internal.fasterxml.jackson.datatype.jsr310.deser",
       "com.databricks.internal.fasterxml.jackson.datatype.jsr310.deser.key",
-      "com.databricks.internal.fasterxml.jackson.datatype.jsr310.ser",
-      "com.databricks.internal.fasterxml.jackson.datatype.jsr310.ser.key",
+      "com.databricks.internal.fasterxml.jackson.datatype.jsr310.set",
+      "com.databricks.internal.fasterxml.jackson.datatype.jsr310.set.key",
       "com.databricks.internal.fasterxml.jackson.datatype.jsr310.util",
       "com.databricks.internal.google.api.client.http",
       "com.databricks.internal.google.api.client.http.apache",
@@ -2806,9 +2735,9 @@
       "com.fasterxml.jackson.databind.jsontype.impl",
       "com.fasterxml.jackson.databind.module",
       "com.fasterxml.jackson.databind.node",
-      "com.fasterxml.jackson.databind.ser",
-      "com.fasterxml.jackson.databind.ser.impl",
-      "com.fasterxml.jackson.databind.ser.std",
+      "com.fasterxml.jackson.databind.set",
+      "com.fasterxml.jackson.databind.set.impl",
+      "com.fasterxml.jackson.databind.set.std",
       "com.fasterxml.jackson.databind.type",
       "com.fasterxml.jackson.databind.util",
       "com.fasterxml.jackson.databind.util.internal"
@@ -2821,15 +2750,15 @@
       "com.fasterxml.jackson.dataformat.xml.annotation",
       "com.fasterxml.jackson.dataformat.xml.deser",
       "com.fasterxml.jackson.dataformat.xml.jaxb",
-      "com.fasterxml.jackson.dataformat.xml.ser",
+      "com.fasterxml.jackson.dataformat.xml.set",
       "com.fasterxml.jackson.dataformat.xml.util"
     ],
     "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": [
       "com.fasterxml.jackson.datatype.jsr310",
       "com.fasterxml.jackson.datatype.jsr310.deser",
       "com.fasterxml.jackson.datatype.jsr310.deser.key",
-      "com.fasterxml.jackson.datatype.jsr310.ser",
-      "com.fasterxml.jackson.datatype.jsr310.ser.key",
+      "com.fasterxml.jackson.datatype.jsr310.set",
+      "com.fasterxml.jackson.datatype.jsr310.set.key",
       "com.fasterxml.jackson.datatype.jsr310.util"
     ],
     "com.fasterxml.woodstox:woodstox-core": [
@@ -2997,28 +2926,20 @@
       "com.github.dockerjava.zerodep.shaded.org.apache.hc.core5.ssl",
       "com.github.dockerjava.zerodep.shaded.org.apache.hc.core5.util"
     ],
-    "com.github.stephenc.jcip:jcip-annotations": [
-      "net.jcip.annotations"
-    ],
+    "com.github.stephenc.jcip:jcip-annotations": ["net.jcip.annotations"],
     "com.google.protobuf:protobuf-java": [
       "com.google.protobuf",
       "com.google.protobuf.compiler"
     ],
-    "com.microsoft.azure:msal4j": [
-      "com.microsoft.aad.msal4j"
-    ],
+    "com.microsoft.azure:msal4j": ["com.microsoft.aad.msal4j"],
     "com.microsoft.azure:msal4j-persistence-extension": [
       "com.microsoft.aad.msal4jextensions",
       "com.microsoft.aad.msal4jextensions.persistence",
       "com.microsoft.aad.msal4jextensions.persistence.linux",
       "com.microsoft.aad.msal4jextensions.persistence.mac"
     ],
-    "com.nimbusds:content-type": [
-      "com.nimbusds.common.contenttype"
-    ],
-    "com.nimbusds:lang-tag": [
-      "com.nimbusds.langtag"
-    ],
+    "com.nimbusds:content-type": ["com.nimbusds.common.contenttype"],
+    "com.nimbusds:lang-tag": ["com.nimbusds.langtag"],
     "com.nimbusds:nimbus-jose-jwt": [
       "com.nimbusds.jose",
       "com.nimbusds.jose.crypto",
@@ -3142,12 +3063,8 @@
       "io.netty.handler.codec.serialization",
       "io.netty.handler.codec.string"
     ],
-    "io.netty:netty-codec-compression": [
-      "io.netty.handler.codec.compression"
-    ],
-    "io.netty:netty-codec-dns": [
-      "io.netty.handler.codec.dns"
-    ],
+    "io.netty:netty-codec-compression": ["io.netty.handler.codec.compression"],
+    "io.netty:netty-codec-dns": ["io.netty.handler.codec.dns"],
     "io.netty:netty-codec-http": [
       "io.netty.handler.codec.http",
       "io.netty.handler.codec.http.cookie",
@@ -3159,15 +3076,9 @@
       "io.netty.handler.codec.rtsp",
       "io.netty.handler.codec.spdy"
     ],
-    "io.netty:netty-codec-http2": [
-      "io.netty.handler.codec.http2"
-    ],
-    "io.netty:netty-codec-marshalling": [
-      "io.netty.handler.codec.marshalling"
-    ],
-    "io.netty:netty-codec-protobuf": [
-      "io.netty.handler.codec.protobuf"
-    ],
+    "io.netty:netty-codec-http2": ["io.netty.handler.codec.http2"],
+    "io.netty:netty-codec-marshalling": ["io.netty.handler.codec.marshalling"],
+    "io.netty:netty-codec-protobuf": ["io.netty.handler.codec.protobuf"],
     "io.netty:netty-codec-socks": [
       "io.netty.handler.codec.socks",
       "io.netty.handler.codec.socksx",
@@ -3202,21 +3113,13 @@
       "io.netty.handler.timeout",
       "io.netty.handler.traffic"
     ],
-    "io.netty:netty-handler-proxy": [
-      "io.netty.handler.proxy"
-    ],
-    "io.netty:netty-resolver": [
-      "io.netty.resolver"
-    ],
-    "io.netty:netty-resolver-dns": [
-      "io.netty.resolver.dns"
-    ],
+    "io.netty:netty-handler-proxy": ["io.netty.handler.proxy"],
+    "io.netty:netty-resolver": ["io.netty.resolver"],
+    "io.netty:netty-resolver-dns": ["io.netty.resolver.dns"],
     "io.netty:netty-resolver-dns-classes-macos": [
       "io.netty.resolver.dns.macos"
     ],
-    "io.netty:netty-tcnative-classes": [
-      "io.netty.internal.tcnative"
-    ],
+    "io.netty:netty-tcnative-classes": ["io.netty.internal.tcnative"],
     "io.netty:netty-transport": [
       "io.netty.bootstrap",
       "io.netty.channel",
@@ -3231,15 +3134,9 @@
       "io.netty.channel.socket.nio",
       "io.netty.channel.socket.oio"
     ],
-    "io.netty:netty-transport-classes-epoll": [
-      "io.netty.channel.epoll"
-    ],
-    "io.netty:netty-transport-classes-kqueue": [
-      "io.netty.channel.kqueue"
-    ],
-    "io.netty:netty-transport-native-unix-common": [
-      "io.netty.channel.unix"
-    ],
+    "io.netty:netty-transport-classes-epoll": ["io.netty.channel.epoll"],
+    "io.netty:netty-transport-classes-kqueue": ["io.netty.channel.kqueue"],
+    "io.netty:netty-transport-native-unix-common": ["io.netty.channel.unix"],
     "io.projectreactor.netty:reactor-netty-core": [
       "reactor.netty",
       "reactor.netty.channel",
@@ -3280,9 +3177,7 @@
       "reactor.util.function",
       "reactor.util.retry"
     ],
-    "io.r2dbc:r2dbc-spi": [
-      "io.r2dbc.spi"
-    ],
+    "io.r2dbc:r2dbc-spi": ["io.r2dbc.spi"],
     "jakarta.activation:jakarta.activation-api": [
       "jakarta.activation",
       "jakarta.activation.spi"
@@ -3347,10 +3242,7 @@
       "com.sun.jna.platform.win32.COM.util.annotation",
       "com.sun.jna.platform.wince"
     ],
-    "net.minidev:accessors-smart": [
-      "net.minidev.asm",
-      "net.minidev.asm.ex"
-    ],
+    "net.minidev:accessors-smart": ["net.minidev.asm", "net.minidev.asm.ex"],
     "net.minidev:json-smart": [
       "net.minidev.json",
       "net.minidev.json.annotate",
@@ -3525,30 +3417,22 @@
       "org.flywaydb.community.database",
       "org.flywaydb.community.database.databricks"
     ],
-    "org.flywaydb:flyway-database-db2": [
-      "org.flywaydb.database.db2"
-    ],
+    "org.flywaydb:flyway-database-db2": ["org.flywaydb.database.db2"],
     "org.flywaydb:flyway-database-db2zos": [
       "org.flywaydb.community.database",
       "org.flywaydb.community.database.db2z"
     ],
-    "org.flywaydb:flyway-database-derby": [
-      "org.flywaydb.database.derby"
-    ],
+    "org.flywaydb:flyway-database-derby": ["org.flywaydb.database.derby"],
     "org.flywaydb:flyway-database-duckdb": [
       "org.flywaydb.community.database",
       "org.flywaydb.community.database.duckdb"
     ],
-    "org.flywaydb:flyway-database-hsqldb": [
-      "org.flywaydb.database.hsqldb"
-    ],
+    "org.flywaydb:flyway-database-hsqldb": ["org.flywaydb.database.hsqldb"],
     "org.flywaydb:flyway-database-ignite": [
       "org.flywaydb.community.database",
       "org.flywaydb.community.database.ignite.thin"
     ],
-    "org.flywaydb:flyway-database-informix": [
-      "org.flywaydb.database.informix"
-    ],
+    "org.flywaydb:flyway-database-informix": ["org.flywaydb.database.informix"],
     "org.flywaydb:flyway-database-iris": [
       "org.flywaydb.community.database",
       "org.flywaydb.community.database.iris"
@@ -3563,9 +3447,7 @@
       "org.flywaydb.community.database",
       "org.flywaydb.community.database.oceanbase"
     ],
-    "org.flywaydb:flyway-database-oracle": [
-      "org.flywaydb.database.oracle"
-    ],
+    "org.flywaydb:flyway-database-oracle": ["org.flywaydb.database.oracle"],
     "org.flywaydb:flyway-database-postgresql": [
       "org.flywaydb.database.cockroachdb",
       "org.flywaydb.database.postgresql"
@@ -3574,12 +3456,8 @@
       "org.flywaydb.community.database",
       "org.flywaydb.community.database.questdb"
     ],
-    "org.flywaydb:flyway-database-redshift": [
-      "org.flywaydb.database.redshift"
-    ],
-    "org.flywaydb:flyway-database-saphana": [
-      "org.flywaydb.database.saphana"
-    ],
+    "org.flywaydb:flyway-database-redshift": ["org.flywaydb.database.redshift"],
+    "org.flywaydb:flyway-database-saphana": ["org.flywaydb.database.saphana"],
     "org.flywaydb:flyway-database-snowflake": [
       "org.flywaydb.database.snowflake"
     ],
@@ -3598,26 +3476,16 @@
       "org.flywaydb.community.database",
       "org.flywaydb.community.database.postgresql.yugabytedb"
     ],
-    "org.flywaydb:flyway-firebird": [
-      "org.flywaydb.database.firebird"
-    ],
-    "org.flywaydb:flyway-gcp-bigquery": [
-      "org.flywaydb.database.bigquery"
-    ],
-    "org.flywaydb:flyway-gcp-spanner": [
-      "org.flywaydb.database.spanner"
-    ],
-    "org.flywaydb:flyway-locations-s3": [
-      "org.flywaydb.locations.s3"
-    ],
+    "org.flywaydb:flyway-firebird": ["org.flywaydb.database.firebird"],
+    "org.flywaydb:flyway-gcp-bigquery": ["org.flywaydb.database.bigquery"],
+    "org.flywaydb:flyway-gcp-spanner": ["org.flywaydb.database.spanner"],
+    "org.flywaydb:flyway-locations-s3": ["org.flywaydb.locations.s3"],
     "org.flywaydb:flyway-mysql": [
       "org.flywaydb.authentication.mysql",
       "org.flywaydb.database.mysql",
       "org.flywaydb.database.mysql.mariadb"
     ],
-    "org.flywaydb:flyway-nc-callbacks": [
-      "org.flywaydb.nc.callbacks"
-    ],
+    "org.flywaydb:flyway-nc-callbacks": ["org.flywaydb.nc.callbacks"],
     "org.flywaydb:flyway-nc-core": [
       "org.flywaydb.nc",
       "org.flywaydb.nc.callbacks",
@@ -3629,9 +3497,7 @@
       "org.flywaydb.nc.readers",
       "org.flywaydb.nc.utils"
     ],
-    "org.flywaydb:flyway-nc-scanners": [
-      "org.flywaydb.scanners"
-    ],
+    "org.flywaydb:flyway-nc-scanners": ["org.flywaydb.scanners"],
     "org.flywaydb:flyway-reports": [
       "org.flywaydb.reports",
       "org.flywaydb.reports.api.extensibility",
@@ -3640,9 +3506,7 @@
       "org.flywaydb.reports.output",
       "org.flywaydb.reports.utils"
     ],
-    "org.flywaydb:flyway-singlestore": [
-      "org.flywaydb.database.singlestore"
-    ],
+    "org.flywaydb:flyway-singlestore": ["org.flywaydb.database.singlestore"],
     "org.flywaydb:flyway-sqlserver": [
       "org.flywaydb.clean",
       "org.flywaydb.clean.database",
@@ -3650,31 +3514,19 @@
       "org.flywaydb.database.sqlserver.fabricDataWarehouse",
       "org.flywaydb.database.sqlserver.synapse"
     ],
-    "org.flywaydb:flyway-verb-baseline": [
-      "org.flywaydb.verb.baseline"
-    ],
-    "org.flywaydb:flyway-verb-clean": [
-      "org.flywaydb.verb.clean"
-    ],
-    "org.flywaydb:flyway-verb-info": [
-      "org.flywaydb.verb.info"
-    ],
+    "org.flywaydb:flyway-verb-baseline": ["org.flywaydb.verb.baseline"],
+    "org.flywaydb:flyway-verb-clean": ["org.flywaydb.verb.clean"],
+    "org.flywaydb:flyway-verb-info": ["org.flywaydb.verb.info"],
     "org.flywaydb:flyway-verb-migrate": [
       "org.flywaydb.verb.migrate",
       "org.flywaydb.verb.migrate.migrators"
     ],
-    "org.flywaydb:flyway-verb-repair": [
-      "org.flywaydb.verb.repair"
-    ],
-    "org.flywaydb:flyway-verb-schemas": [
-      "org.flywaydb.verb.schemas"
-    ],
+    "org.flywaydb:flyway-verb-repair": ["org.flywaydb.verb.repair"],
+    "org.flywaydb:flyway-verb-schemas": ["org.flywaydb.verb.schemas"],
     "org.flywaydb:flyway-verb-testConnection": [
       "org.flywaydb.verb.testConnection"
     ],
-    "org.flywaydb:flyway-verb-validate": [
-      "org.flywaydb.verb.validate"
-    ],
+    "org.flywaydb:flyway-verb-validate": ["org.flywaydb.verb.validate"],
     "org.fusesource.jansi:jansi": [
       "org.fusesource.hawtjni.runtime",
       "org.fusesource.jansi",
@@ -3714,10 +3566,7 @@
       "org.jooq.util.xml.jaxb",
       "org.jooq.util.yugabytedb"
     ],
-    "org.jooq:jooq-codegen": [
-      "org.jooq.codegen",
-      "org.jooq.codegen.example"
-    ],
+    "org.jooq:jooq-codegen": ["org.jooq.codegen", "org.jooq.codegen.example"],
     "org.jooq:jooq-meta": [
       "org.jooq.meta",
       "org.jooq.meta.clickhouse",
@@ -3770,9 +3619,7 @@
       "org.jooq.meta.xml",
       "org.jooq.meta.yugabytedb"
     ],
-    "org.jspecify:jspecify": [
-      "org.jspecify.annotations"
-    ],
+    "org.jspecify:jspecify": ["org.jspecify.annotations"],
     "org.mariadb.jdbc:mariadb-java-client": [
       "org.mariadb.jdbc",
       "org.mariadb.jdbc.authentication",
@@ -3831,9 +3678,7 @@
       "org.bson.json",
       "org.bson.types"
     ],
-    "org.mongodb:bson-record-codec": [
-      "org.bson.codecs.record"
-    ],
+    "org.mongodb:bson-record-codec": ["org.bson.codecs.record"],
     "org.mongodb:mongodb-driver-core": [
       "com.mongodb",
       "com.mongodb.annotations",
@@ -3894,10 +3739,7 @@
       "com.mongodb.client.internal",
       "com.mongodb.client.vault"
     ],
-    "org.ow2.asm:asm": [
-      "org.objectweb.asm",
-      "org.objectweb.asm.signature"
-    ],
+    "org.ow2.asm:asm": ["org.objectweb.asm", "org.objectweb.asm.signature"],
     "org.postgresql:postgresql": [
       "org.postgresql",
       "org.postgresql.copy",
@@ -3940,9 +3782,7 @@
       "org.postgresql.xa",
       "org.postgresql.xml"
     ],
-    "org.reactivestreams:reactive-streams": [
-      "org.reactivestreams"
-    ],
+    "org.reactivestreams:reactive-streams": ["org.reactivestreams"],
     "org.rnorth.duct-tape:duct-tape": [
       "org.rnorth.ducttape",
       "org.rnorth.ducttape.circuitbreakers",
@@ -4006,9 +3846,9 @@
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.jsontype.impl",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.module",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.node",
-      "org.testcontainers.shaded.com.fasterxml.jackson.databind.ser",
-      "org.testcontainers.shaded.com.fasterxml.jackson.databind.ser.impl",
-      "org.testcontainers.shaded.com.fasterxml.jackson.databind.ser.std",
+      "org.testcontainers.shaded.com.fasterxml.jackson.databind.set",
+      "org.testcontainers.shaded.com.fasterxml.jackson.databind.set.impl",
+      "org.testcontainers.shaded.com.fasterxml.jackson.databind.set.std",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.type",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.util",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.util.internal",
@@ -4206,7 +4046,7 @@
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.ecgost12",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.edec",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.elgamal",
-      "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.gost",
+      "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.ghost",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.ies",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.mldsa",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.mlkem",
@@ -4821,17 +4661,13 @@
         "com.databricks.internal.bouncycastle.jce.provider.BouncyCastleProvider",
         "com.databricks.internal.bouncycastle.pqc.jcajce.provider.BouncyCastlePQCProvider"
       ],
-      "java.sql.Driver": [
-        "com.databricks.client.jdbc.Driver"
-      ],
+      "java.sql.Driver": ["com.databricks.client.jdbc.Driver"],
       "reactor.blockhound.integration.BlockHoundIntegration": [
         "com.databricks.internal.io.netty.util.internal.Hidden$NettyBlockHoundIntegration"
       ]
     },
     "com.databricks:databricks-jdbc:jar:sources": {
-      "java.sql.Driver": [
-        "com.databricks.client.jdbc.Driver"
-      ]
+      "java.sql.Driver": ["com.databricks.client.jdbc.Driver"]
     },
     "com.fasterxml.jackson.core:jackson-core": {
       "com.fasterxml.jackson.core.JsonFactory": [
@@ -4969,9 +4805,7 @@
       ]
     },
     "mysql:mysql-connector-java": {
-      "java.sql.Driver": [
-        "com.mysql.cj.jdbc.Driver"
-      ]
+      "java.sql.Driver": ["com.mysql.cj.jdbc.Driver"]
     },
     "org.flywaydb:flyway-command-test-connection": {
       "org.flywaydb.core.extensibility.Plugin": [
@@ -5566,9 +5400,7 @@
       ]
     },
     "org.mariadb.jdbc:mariadb-java-client": {
-      "java.sql.Driver": [
-        "org.mariadb.jdbc.Driver"
-      ],
+      "java.sql.Driver": ["org.mariadb.jdbc.Driver"],
       "org.mariadb.jdbc.authentication.AuthenticationPlugin": [
         "org.mariadb.jdbc.internal.com.send.authentication.CachingSha2PasswordPlugin",
         "org.mariadb.jdbc.internal.com.send.authentication.ClearPasswordPlugin",
@@ -5589,9 +5421,7 @@
       ]
     },
     "org.mariadb.jdbc:mariadb-java-client:jar:sources": {
-      "java.sql.Driver": [
-        "org.mariadb.jdbc.Driver"
-      ],
+      "java.sql.Driver": ["org.mariadb.jdbc.Driver"],
       "org.mariadb.jdbc.authentication.AuthenticationPlugin": [
         "org.mariadb.jdbc.internal.com.send.authentication.CachingSha2PasswordPlugin",
         "org.mariadb.jdbc.internal.com.send.authentication.ClearPasswordPlugin",
@@ -5612,14 +5442,10 @@
       ]
     },
     "org.postgresql:postgresql": {
-      "java.sql.Driver": [
-        "org.postgresql.Driver"
-      ]
+      "java.sql.Driver": ["org.postgresql.Driver"]
     },
     "org.postgresql:postgresql:jar:sources": {
-      "java.sql.Driver": [
-        "org.postgresql.Driver"
-      ]
+      "java.sql.Driver": ["org.postgresql.Driver"]
     },
     "org.testcontainers:testcontainers": {
       "org.testcontainers.dockerclient.DockerClientProviderStrategy": [
@@ -5639,9 +5465,7 @@
       ]
     },
     "org.testcontainers:testcontainers-jdbc": {
-      "java.sql.Driver": [
-        "org.testcontainers.jdbc.ContainerDatabaseDriver"
-      ]
+      "java.sql.Driver": ["org.testcontainers.jdbc.ContainerDatabaseDriver"]
     },
     "org.testcontainers:testcontainers-mariadb": {
       "org.testcontainers.containers.JdbcDatabaseContainerProvider": [
@@ -5671,14 +5495,10 @@
       ]
     },
     "org.xerial:sqlite-jdbc": {
-      "java.sql.Driver": [
-        "org.sqlite.JDBC"
-      ]
+      "java.sql.Driver": ["org.sqlite.JDBC"]
     },
     "org.xerial:sqlite-jdbc:jar:sources": {
-      "java.sql.Driver": [
-        "org.sqlite.JDBC"
-      ]
+      "java.sql.Driver": ["org.sqlite.JDBC"]
     }
   },
   "version": "2"

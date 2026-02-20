@@ -17,7 +17,7 @@ with open(release_file, "rb") as f:
 
 lines = []
 with open("README.md", "r") as f:
-    lines = f.readlines()  
+    lines = f.readlines()
 
 with open("README-new.md", "w") as f:
     for l in lines:
@@ -31,5 +31,3 @@ with open("README-new.md", "w") as f:
 
 os.unlink("README.md")
 os.rename("README-new.md", "README.md")
-
-

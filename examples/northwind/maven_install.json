@@ -473,26 +473,18 @@
       "org.eclipse.jetty:jetty-webapp",
       "org.slf4j:slf4j-api"
     ],
-    "com.zaxxer:HikariCP": [
-      "org.slf4j:slf4j-api"
-    ],
-    "io.r2dbc:r2dbc-spi": [
-      "org.reactivestreams:reactive-streams"
-    ],
+    "com.zaxxer:HikariCP": ["org.slf4j:slf4j-api"],
+    "io.r2dbc:r2dbc-spi": ["org.reactivestreams:reactive-streams"],
     "jakarta.xml.bind:jakarta.xml.bind-api": [
       "jakarta.activation:jakarta.activation-api"
     ],
-    "mysql:mysql-connector-java": [
-      "com.google.protobuf:protobuf-java"
-    ],
+    "mysql:mysql-connector-java": ["com.google.protobuf:protobuf-java"],
     "org.apache.commons:commons-compress": [
       "commons-codec:commons-codec",
       "commons-io:commons-io",
       "org.apache.commons:commons-lang3"
     ],
-    "org.assertj:assertj-core": [
-      "net.bytebuddy:byte-buddy"
-    ],
+    "org.assertj:assertj-core": ["net.bytebuddy:byte-buddy"],
     "org.eclipse.jetty.websocket:websocket-client": [
       "org.eclipse.jetty.websocket:websocket-common",
       "org.eclipse.jetty:jetty-client",
@@ -524,43 +516,24 @@
       "org.eclipse.jetty:jetty-io",
       "org.eclipse.jetty:jetty-util"
     ],
-    "org.eclipse.jetty:jetty-io": [
-      "org.eclipse.jetty:jetty-util"
-    ],
-    "org.eclipse.jetty:jetty-security": [
-      "org.eclipse.jetty:jetty-server"
-    ],
+    "org.eclipse.jetty:jetty-io": ["org.eclipse.jetty:jetty-util"],
+    "org.eclipse.jetty:jetty-security": ["org.eclipse.jetty:jetty-server"],
     "org.eclipse.jetty:jetty-server": [
       "javax.servlet:javax.servlet-api",
       "org.eclipse.jetty:jetty-http",
       "org.eclipse.jetty:jetty-io"
     ],
-    "org.eclipse.jetty:jetty-servlet": [
-      "org.eclipse.jetty:jetty-security"
-    ],
+    "org.eclipse.jetty:jetty-servlet": ["org.eclipse.jetty:jetty-security"],
     "org.eclipse.jetty:jetty-webapp": [
       "org.eclipse.jetty:jetty-servlet",
       "org.eclipse.jetty:jetty-xml"
     ],
-    "org.eclipse.jetty:jetty-xml": [
-      "org.eclipse.jetty:jetty-util"
-    ],
-    "org.flywaydb:flyway-core": [
-      "com.fasterxml.jackson.core:jackson-databind"
-    ],
-    "org.flywaydb:flyway-database-postgresql": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.flywaydb:flyway-mysql": [
-      "org.flywaydb:flyway-core"
-    ],
-    "org.jooq:jooq": [
-      "io.r2dbc:r2dbc-spi"
-    ],
-    "org.jooq:jooq-codegen": [
-      "org.jooq:jooq",
-      "org.jooq:jooq-meta"
-    ],
+    "org.eclipse.jetty:jetty-xml": ["org.eclipse.jetty:jetty-util"],
+    "org.flywaydb:flyway-core": ["com.fasterxml.jackson.core:jackson-databind"],
+    "org.flywaydb:flyway-database-postgresql": ["org.flywaydb:flyway-core"],
+    "org.flywaydb:flyway-mysql": ["org.flywaydb:flyway-core"],
+    "org.jooq:jooq": ["io.r2dbc:r2dbc-spi"],
+    "org.jooq:jooq-codegen": ["org.jooq:jooq", "org.jooq:jooq-meta"],
     "org.jooq:jooq-meta": [
       "jakarta.xml.bind:jakarta.xml.bind-api",
       "org.jooq:jooq"
@@ -601,12 +574,8 @@
     "org.opentest4j.reporting:open-test-reporting-tooling-spi": [
       "org.apiguardian:apiguardian-api"
     ],
-    "org.rnorth.duct-tape:duct-tape": [
-      "org.jetbrains:annotations"
-    ],
-    "org.slf4j:slf4j-simple": [
-      "org.slf4j:slf4j-api"
-    ],
+    "org.rnorth.duct-tape:duct-tape": ["org.jetbrains:annotations"],
+    "org.slf4j:slf4j-simple": ["org.slf4j:slf4j-api"],
     "org.testcontainers:testcontainers": [
       "com.github.docker-java:docker-java-api",
       "com.github.docker-java:docker-java-transport-zerodep",
@@ -662,9 +631,9 @@
       "com.fasterxml.jackson.databind.jsontype.impl",
       "com.fasterxml.jackson.databind.module",
       "com.fasterxml.jackson.databind.node",
-      "com.fasterxml.jackson.databind.ser",
-      "com.fasterxml.jackson.databind.ser.impl",
-      "com.fasterxml.jackson.databind.ser.std",
+      "com.fasterxml.jackson.databind.set",
+      "com.fasterxml.jackson.databind.set.impl",
+      "com.fasterxml.jackson.databind.set.std",
       "com.fasterxml.jackson.databind.type",
       "com.fasterxml.jackson.databind.util",
       "com.fasterxml.jackson.databind.util.internal"
@@ -832,9 +801,7 @@
       "org.apache.commons.io.output",
       "org.apache.commons.io.serialization"
     ],
-    "io.r2dbc:r2dbc-spi": [
-      "io.r2dbc.spi"
-    ],
+    "io.r2dbc:r2dbc-spi": ["io.r2dbc.spi"],
     "jakarta.activation:jakarta.activation-api": [
       "jakarta.activation",
       "jakarta.activation.spi"
@@ -988,9 +955,7 @@
       "org.apache.commons.lang3.tuple",
       "org.apache.commons.lang3.util"
     ],
-    "org.apiguardian:apiguardian-api": [
-      "org.apiguardian.api"
-    ],
+    "org.apiguardian:apiguardian-api": ["org.apiguardian.api"],
     "org.assertj:assertj-core": [
       "org.assertj.core.annotation",
       "org.assertj.core.annotations",
@@ -1102,12 +1067,8 @@
       "org.eclipse.jetty.util.thread",
       "org.eclipse.jetty.util.thread.strategy"
     ],
-    "org.eclipse.jetty:jetty-webapp": [
-      "org.eclipse.jetty.webapp"
-    ],
-    "org.eclipse.jetty:jetty-xml": [
-      "org.eclipse.jetty.xml"
-    ],
+    "org.eclipse.jetty:jetty-webapp": ["org.eclipse.jetty.webapp"],
+    "org.eclipse.jetty:jetty-xml": ["org.eclipse.jetty.xml"],
     "org.flywaydb:flyway-core": [
       "org.flywaydb.core",
       "org.flywaydb.core.api",
@@ -1220,10 +1181,7 @@
       "org.jooq.util.xml.jaxb",
       "org.jooq.util.yugabytedb"
     ],
-    "org.jooq:jooq-codegen": [
-      "org.jooq.codegen",
-      "org.jooq.codegen.example"
-    ],
+    "org.jooq:jooq-codegen": ["org.jooq.codegen", "org.jooq.codegen.example"],
     "org.jooq:jooq-meta": [
       "org.jooq.meta",
       "org.jooq.meta.clickhouse",
@@ -1276,9 +1234,7 @@
       "org.jooq.meta.xml",
       "org.jooq.meta.yugabytedb"
     ],
-    "org.jspecify:jspecify": [
-      "org.jspecify.annotations"
-    ],
+    "org.jspecify:jspecify": ["org.jspecify.annotations"],
     "org.junit.jupiter:junit-jupiter-api": [
       "org.junit.jupiter.api",
       "org.junit.jupiter.api.condition",
@@ -1344,12 +1300,8 @@
     "org.opentest4j.reporting:open-test-reporting-tooling-spi": [
       "org.opentest4j.reporting.tooling.spi.htmlreport"
     ],
-    "org.opentest4j:opentest4j": [
-      "org.opentest4j"
-    ],
-    "org.reactivestreams:reactive-streams": [
-      "org.reactivestreams"
-    ],
+    "org.opentest4j:opentest4j": ["org.opentest4j"],
+    "org.reactivestreams:reactive-streams": ["org.reactivestreams"],
     "org.rnorth.duct-tape:duct-tape": [
       "org.rnorth.ducttape",
       "org.rnorth.ducttape.circuitbreakers",
@@ -1364,9 +1316,7 @@
       "org.slf4j.helpers",
       "org.slf4j.spi"
     ],
-    "org.slf4j:slf4j-simple": [
-      "org.slf4j.impl"
-    ],
+    "org.slf4j:slf4j-simple": ["org.slf4j.impl"],
     "org.testcontainers:testcontainers": [
       "org.testcontainers",
       "org.testcontainers.containers",
@@ -1416,9 +1366,9 @@
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.jsontype.impl",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.module",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.node",
-      "org.testcontainers.shaded.com.fasterxml.jackson.databind.ser",
-      "org.testcontainers.shaded.com.fasterxml.jackson.databind.ser.impl",
-      "org.testcontainers.shaded.com.fasterxml.jackson.databind.ser.std",
+      "org.testcontainers.shaded.com.fasterxml.jackson.databind.set",
+      "org.testcontainers.shaded.com.fasterxml.jackson.databind.set.impl",
+      "org.testcontainers.shaded.com.fasterxml.jackson.databind.set.std",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.type",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.util",
       "org.testcontainers.shaded.com.fasterxml.jackson.databind.util.internal",
@@ -1616,7 +1566,7 @@
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.ecgost12",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.edec",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.elgamal",
-      "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.gost",
+      "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.ghost",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.ies",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.mldsa",
       "org.testcontainers.shaded.org.bouncycastle.jcajce.provider.asymmetric.mlkem",
@@ -1994,9 +1944,7 @@
       ]
     },
     "mysql:mysql-connector-java": {
-      "java.sql.Driver": [
-        "com.mysql.cj.jdbc.Driver"
-      ]
+      "java.sql.Driver": ["com.mysql.cj.jdbc.Driver"]
     },
     "org.eclipse.jetty.websocket:websocket-common": {
       "org.eclipse.jetty.websocket.api.extensions.Extension": [
@@ -2218,9 +2166,7 @@
       ]
     },
     "org.testcontainers:testcontainers-jdbc": {
-      "java.sql.Driver": [
-        "org.testcontainers.jdbc.ContainerDatabaseDriver"
-      ]
+      "java.sql.Driver": ["org.testcontainers.jdbc.ContainerDatabaseDriver"]
     },
     "org.testcontainers:testcontainers-mysql": {
       "org.testcontainers.containers.JdbcDatabaseContainerProvider": [
@@ -2231,14 +2177,10 @@
       ]
     },
     "org.xerial:sqlite-jdbc": {
-      "java.sql.Driver": [
-        "org.sqlite.JDBC"
-      ]
+      "java.sql.Driver": ["org.sqlite.JDBC"]
     },
     "org.xerial:sqlite-jdbc:jar:sources": {
-      "java.sql.Driver": [
-        "org.sqlite.JDBC"
-      ]
+      "java.sql.Driver": ["org.sqlite.JDBC"]
     }
   },
   "version": "2"

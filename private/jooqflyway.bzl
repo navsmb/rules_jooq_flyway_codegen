@@ -1,3 +1,7 @@
+"""
+jOOQ code generation by way of testcontainers and flyway
+"""
+
 load("@contrib_rules_jvm//java:defs.bzl", "java_binary", "java_library")
 load("@rules_jvm_external//:defs.bzl", "artifact")
 
@@ -53,6 +57,7 @@ def jooqflyway(
         **kwargs):
     """
             Generate jooq code from a set of flyway mirgartions.
+
             Creates a test container using the passed `docker_image` (or a default one),
             connects to it as `db_type`, runs the migrations in `migration_jar` using
             flyway, and uses jOOQ to generate java code from the migrated database

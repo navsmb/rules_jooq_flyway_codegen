@@ -534,4 +534,3 @@ CREATE TABLE IF NOT EXISTS `strings` (
     PRIMARY KEY (`string_id`))
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8;
-
