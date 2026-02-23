@@ -25,6 +25,7 @@ def _impl(ctx):
         outputs = [src_jar_file],
         executable = ctx.executable.tool,
         arguments = [args],
+        use_default_shell_env = True,
     )
 
     return [DefaultInfo(files = depset([src_jar_file]))]
