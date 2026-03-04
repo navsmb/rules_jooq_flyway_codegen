@@ -71,9 +71,9 @@ def jooqflyway(
               name: name of the target.
               migration_jar: a jar to be added to the classpath of the code generator and used to run flyway migrations.
               jooq_config: a jOOQ [configuration xml](https://www.jooq.org/doc/latest/manual/code-generation/codegen-configuration/) that configures jOOQ.
-              db_type: the type of DB. Must be one of: `postgres`, `mariadb`, `mysql`, `sqlite`
+              db_type: the type of DB. Must be one of: `postgres`, `mariadb`, `mysql`, `sqlite`, `provided`
               flyway_config: a flwyway [config file](https://documentation.red-gate.com/fd/configuration-277578842.html)
-              docker_image: a docker url to use instead of a default image. By default is `--` which will be interpreted as 'use the default image'.
+              docker_image: a docker url to use instead of a default image.
               deps: dependencies of the generated code. If not specified will be `[artifact("org.jooq:jooq")]`
     """
 

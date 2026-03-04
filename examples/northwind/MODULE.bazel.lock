@@ -14,7 +14,7 @@
   },
   "localOverrideHashes": {
     "bazel_tools": "1ae69322ac3823527337acf02016e8ee95813d8d356f47060255b8956fa642f0",
-    "rules_jooq_flyway_codegen": "9bb4ec3bda87fc4c35c7ba488730a22fb650cf8b6a3e6f666facfe613d5b7107"
+    "rules_jooq_flyway_codegen": "a06008d20ef7093e5b7fe8516e2145df453536d20583b3cbcd35dcaa44bf4d03"
   },
   "moduleDepGraph": {
     "<root>": {
@@ -828,6 +828,8 @@
                 "artifacts": [
                   "com.beust:jcommander:1.82",
                   "mysql:mysql-connector-java:8.0.21",
+                  "org.apache.commons:commons-lang3:3.20.0",
+                  "org.apache.commons:commons-text:1.15.0",
                   "org.flywaydb:flyway-commandline:11.17.2",
                   "org.flywaydb:flyway-core",
                   "org.flywaydb:flyway-database-postgresql",
@@ -875,7 +877,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@rules_jooq_flyway_codegen~//:MODULE.bazel",
-                "line": 73,
+                "line": 75,
                 "column": 15
               }
             }
