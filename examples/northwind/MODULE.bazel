@@ -4,7 +4,7 @@ module(
 )
 
 bazel_dep(name = "contrib_rules_jvm", version = "0.31.1")
-bazel_dep(name = "rules_jvm_external", version = "6.9")
+bazel_dep(name = "rules_jvm_external", version = "7.0")
 bazel_dep(name = "rules_jooq_flyway_codegen", version = "0.0.0")
 local_path_override(
     module_name = "rules_jooq_flyway_codegen",
@@ -14,7 +14,7 @@ local_path_override(
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     artifacts = [
-        "com.google.code.gson:gson:2.8.6",
+        "com.google.code.gson:gson:2.8.9",
         "com.sparkjava:spark-core:2.9.1",
         "com.zaxxer:HikariCP:3.4.5",
         "mysql:mysql-connector-java:8.0.21",

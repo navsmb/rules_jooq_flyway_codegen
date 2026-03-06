@@ -25,16 +25,16 @@ module(
     # breaking change affects most use cases and isn't easy to migrate and/or
     # work-around, and (2) *in the same commit* that introduces an incompatible
     # (breaking) change.
-    bazel_compatibility = [">=7.0.0"],
+    bazel_compatibility = [">=7.1.0"],
 )
 
 bazel_dep(name = "bazelrc-preset.bzl", version = "1.6.0")
-
-bazel_dep(name = "buildifier_prebuilt", version = "8.2.1", dev_dependency = True)
-
 bazel_dep(name = "contrib_rules_jvm", version = "0.31.1")
 bazel_dep(name = "package_metadata", version = "0.0.6")
-bazel_dep(name = "rules_jvm_external", version = "6.9")
+bazel_dep(name = "rules_jvm_external", version = "7.0")
+bazel_dep(name = "rules_shell", version = "0.8.0")
+
+bazel_dep(name = "buildifier_prebuilt", version = "8.2.1", dev_dependency = True)
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
