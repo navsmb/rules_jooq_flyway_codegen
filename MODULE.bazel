@@ -1,0 +1,80 @@
+module(
+    name = "rules_jooq_flyway_codegen",
+    # NOTE:
+    # version = "",
+    #
+    # Always leave version unset or set to "" (the default). The default value
+    # can prevent issues when the module is used via non-registry overrides
+    # (e.g. https://github.com/bazel-contrib/rules_go/issues/4380).
+    #
+    # The publish.yaml GitHub Action sets the version in the registry to the
+    # release version by patching this MODULE.bazel file in the pull request to
+    # the BCR.
+    #
+    # For more info, see this Slack thread:
+    # https://bazelbuild.slack.com/archives/CA31HN1T3/p1750406404452179
+
+    # NOTE:
+    # compatibility_level = 0,
+    #
+    # Bumping compatibility_level too frequently is discouraged because it's
+    # very disruptive: as soon as a module is requested at two different
+    # compatibility levels in the dependency tree, users will see an error.
+    #
+    # As such, the compatibility_level (1) should be bumped *only* when the
+    # breaking change affects most use cases and isn't easy to migrate and/or
+    # work-around, and (2) *in the same commit* that introduces an incompatible
+    # (breaking) change.
+    bazel_compatibility = [">=7.1.0"],
+)
+
+bazel_dep(name = "bazelrc-preset.bzl", version = "1.6.0")
+bazel_dep(name = "contrib_rules_jvm", version = "0.31.1")
+bazel_dep(name = "package_metadata", version = "0.0.6")
+bazel_dep(name = "rules_jvm_external", version = "7.0")
+bazel_dep(name = "rules_shell", version = "0.8.0")
+
+bazel_dep(name = "buildifier_prebuilt", version = "8.2.1", dev_dependency = True)
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    name = "rules_jooq_flyway_codegen_maven",
+    artifacts = [
+        "com.beust:jcommander:1.82",
+        "mysql:mysql-connector-java:8.0.21",
+        "org.flywaydb:flyway-commandline:11.17.2",
+        "org.flywaydb:flyway-core",
+        "org.flywaydb:flyway-database-postgresql",
+        "org.flywaydb:flyway-mysql",
+        "org.jooq:jooq",
+        "org.jooq:jooq-codegen",
+        "org.jooq:jooq-meta",
+        "org.mariadb.jdbc:mariadb-java-client:2.6.2",
+        "org.postgresql:postgresql:42.2.14",
+        "org.testcontainers:testcontainers",
+        "org.testcontainers:testcontainers-jdbc",
+        "org.testcontainers:testcontainers-mariadb",
+        "org.testcontainers:testcontainers-mysql",
+        "org.testcontainers:testcontainers-postgresql",
+        "org.xerial:sqlite-jdbc:3.32.3.2",
+    ],
+    boms = [
+        "io.dropwizard.flywaydb:flyway-bom:11.17.2",
+        "org.jooq:jooq-bom:3.20.11",
+        "org.testcontainers:testcontainers-bom:2.0.3",
+    ],
+    fetch_sources = True,
+    lock_file = "//:maven_install.json",
+    repositories = [
+        "https://repo1.maven.org/maven2",
+    ],
+    strict_visibility = True,
+)
+maven.artifact(
+    name = "rules_jooq_flyway_codegen_maven",
+    artifact = "json-smart",
+    force_version = True,
+    group = "net.minidev",
+    version = "2.5.2",
+)
+use_repo(maven, "rules_jooq_flyway_codegen_maven")

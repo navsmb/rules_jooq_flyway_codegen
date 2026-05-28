@@ -1,5 +1,4 @@
-Bazel rules for jOOQ codegen from Flyway migrations
-===================================================
+# Bazel rules for jOOQ codegen from Flyway migrations
 
 This Bazel rule will apply Flyway migrations to a database
 launched in a Testcontainer, use those to run jOOQ's code
@@ -9,90 +8,72 @@ classes.
 Please note that this rule is still in an alpha-quality state,
 and the steps taken to import it may change in the future.
 
-To import the rules:
+Add the following to your `MODULE.bazel` file, setting the `version` to the latest one available on https://registry.bazel.build/modules/rules_jooq_flyway_codegen:
 
-    load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-    http_archive(
-        name = "rules_jooq_flyway_codegen",
-        urls = ["https://github.com/richardstephens/rules_jooq_flyway_codegen/releases/download/v0.7/rules_jooq_flyway_codegen-v0.7.tgz"],
-        sha256 = "e19bff61d736e727a54e31d843b5d87511974ea41b1cac580d0caa36f3d59f34",
-    )
-
-You must also define a maven install for the codegen's dependencies:
-(Note that these dependencies are only for the code generator, they are not
-propagated to anything that imports the generated classes)
-
-    load("@rules_jvm_external//:defs.bzl", rules_jooq_flyway_codegen_maven_install = "maven_install")
-    rules_jooq_flyway_codegen_maven_install(
-        name = "rules_jooq_flyway_codegen_maven",
-        artifacts = [
-            "org.flywaydb:flyway-core:6.4.4",
-            "org.jooq:jooq:3.13.2",
-            "org.jooq:jooq-meta:3.13.2",
-            "org.jooq:jooq-codegen:3.13.2",
-            "org.testcontainers:testcontainers:1.15.1",
-            "org.testcontainers:postgresql:1.15.1",
-            "org.testcontainers:mariadb:1.15.1",
-            "org.testcontainers:mysql:1.15.1",
-            "org.postgresql:postgresql:42.2.14",
-            "org.mariadb.jdbc:mariadb-java-client:2.6.2",
-            "mysql:mysql-connector-java:8.0.21",
-            "org.xerial:sqlite-jdbc:3.32.3.2",
-        ],
-        fetch_sources = True,
-        repositories = [
-            "https://repo1.maven.org/maven2",
-        ],
-    )
+```starlark
+bazel_dep(name = "rules_jvm_external", version = "...")
+```
 
 The codegen rule takes as a parameter a resource jar containing your
 application's flyway migrations. Your directory structure should look
 something like this:
 
-    src/
-      myservice/
-        db/
-          db/
-            migration/
-              V01_00_00__first_migration.sql
-          codegen.xml
-          BUILD
+```
+myservice/
+|> src/
+|  |> main/
+|     |> resources/
+|        |> db/
+|           |> migration/
+|              |> V01_00_00__first_migration.sql
+|> codegen.xml
+|> BUILD.bazel
+```
 
-Note the double-nested db folders. This is needed because Flyway expects to find its migrations at
-a path in the form of `db/migration` by default. We might try to change how this works 
-or make it customisable in the future.
- 
+Note that migrations are under `db/migration`. This is needed because Flyway expects to find its migrations at
+a path in the form of `db/migration` by default. This can be overridden by supplying a `flyway.toml` file and
+specifying a target for `flyway.locations`:
+
+```toml
+[flyway]
+locations = ["classpath:db/migration"]
+```
+
 In the BUILD file, you can build a resource jar with your migrations as follows:
-    
-    java_library(
-        name = "migration-jar",
-        resource_strip_prefix = "src/myservice/db",
-        resources = glob(["db/migration/*.sql"]),
-        visibility = ["//src/myservice:__subpackages__"],
-    )
 
-Note the `resource_strip_prefix`. That should be the path to this BUILD file
+```starlark
+java_library(
+    name = "migration-jar",
+    resources = glob(["src/main/resources/db/migration/*.sql"]),
+    visibility = ["//visibility:private"],
+)
+```
 
 Now you need to set up your `codegen.xml` file. This will be passed to jOOQ's code
-generator as is, with the exception of overriding the output directory you specify
-to a temporary directory for the generated classes. An [example codgen.xml file is here](./examples/northwind/db/codegen.xml),
-and the [jOOQ documentation for the codegen.xml file is here](https://www.jooq.org/doc/latest/manual/code-generation/codegen-configuration/). 
+generator with only the output directory and JDBC configuration replaced. An [example codegen.xml file is here](./examples/northwind/codegen.xml),
+and the [jOOQ documentation for the codegen.xml file is here](https://www.jooq.org/doc/latest/manual/code-generation/codegen-configuration/).
 
 Now that you have a resource jar containing your migrations, you can call the
 code generator like so:
 
-    load("@rules_jooq_flyway_codegen//rules_jooq_flyway_codegen:jooqflyway.bzl", "jooqflyway")
-    jooqflyway(
-        name = "myservice-db-classes",
-        codegen_xml = "codegen.xml",
-        db_type = "mysql",
-        jooq_dep = "@maven//:org_jooq_jooq",
-        jooq_meta_dep = "@maven//:org_jooq_jooq_meta",
-        migration_jar = ":migration-jar",
-        visibility = ["//src/myservice:__subpackages__"],
-    )
+```starlark
+load("@rules_jooq_flyway_codegen//:defs.bzl", "jooqflyway")
+load("@rules_jvm_external//:defs.bzl", "artifact")
 
-Valid options for db type are `postgres`, `mariadb`, or `mysql` at present, but more
-will be supported in the future.
+jooqflyway(
+    name = "northwind-db-classes",
+    db_type = "mysql",
+    #     flyway_config = "flyway.toml",
+    jooq_config = "codegen.xml",
+    migration_jar = ":migration-jar",
+    visibility = ["//visibility:private"],
+    deps = [
+        artifact("org.jooq:jooq"),
+        artifact("org.jooq:jooq-meta"),
+    ],
+)
+```
 
-And that's it! You can now depend on `//src/myservice/db:myservice-db-classes`
+Valid options for db type are `postgres`, `mariadb`, or `mysql` and `sqlite`.
+
+And that's it! You can now depend on `//myservice:myservice-db-classes`

@@ -1,0 +1,16 @@
+load("@bazelrc-preset.bzl", "bazelrc_preset")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
+# Marked as manual because presets change between bazel versions and we are testing against multiple bazel versions
+# in ci. It will get checked as a pre-commit hook, so we shouldn't be in too bad shape
+bazelrc_preset(
+    name = "preset",
+    doc_link_template = "https://registry.build/flag/bazel?filter={flag}",
+    tags = ["manual"],
+)
+
+# Test that always passes so that the builds don't fail due to lack of tests, but do verify everything actually builds
+sh_test(
+    name = "always_pass_test",
+    srcs = ["always_pass_test.sh"],
+)
