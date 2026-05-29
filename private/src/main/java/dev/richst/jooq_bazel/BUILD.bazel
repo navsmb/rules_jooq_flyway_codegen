@@ -3,16 +3,13 @@ load("@rules_jvm_external//:defs.bzl", "artifact")
 
 java_library(
     name = "codegen_lib",
-    srcs = [
-        "JdbcProvider.java",
-        "JooqBazelCodegen.java",
-        "SqliteJdbcProvider.java",
-        "TestContainersJdbcProvider.java",
-    ],
+    srcs = glob(["*.java"]),
     visibility = ["//visibility:public"],
     deps = [
         artifact("com.beust:jcommander", "rules_jooq_flyway_codegen_maven"),
         artifact("mysql:mysql-connector-java", "rules_jooq_flyway_codegen_maven"),
+        artifact("org.apache.commons:commons-lang3", "rules_jooq_flyway_codegen_maven"),
+        artifact("org.apache.commons:commons-text", "rules_jooq_flyway_codegen_maven"),
         artifact("org.flywaydb:flyway-commandline", "rules_jooq_flyway_codegen_maven"),
         artifact("org.flywaydb:flyway-core", "rules_jooq_flyway_codegen_maven"),
         artifact("org.flywaydb:flyway-database-postgresql", "rules_jooq_flyway_codegen_maven"),
@@ -22,11 +19,11 @@ java_library(
         artifact("org.jooq:jooq-meta", "rules_jooq_flyway_codegen_maven"),
         artifact("org.mariadb.jdbc:mariadb-java-client", "rules_jooq_flyway_codegen_maven"),
         artifact("org.postgresql:postgresql", "rules_jooq_flyway_codegen_maven"),
+        artifact("org.testcontainers:testcontainers", "rules_jooq_flyway_codegen_maven"),
+        artifact("org.testcontainers:testcontainers-jdbc", "rules_jooq_flyway_codegen_maven"),
         artifact("org.testcontainers:testcontainers-mariadb", "rules_jooq_flyway_codegen_maven"),
         artifact("org.testcontainers:testcontainers-mysql", "rules_jooq_flyway_codegen_maven"),
         artifact("org.testcontainers:testcontainers-postgresql", "rules_jooq_flyway_codegen_maven"),
-        artifact("org.testcontainers:testcontainers", "rules_jooq_flyway_codegen_maven"),
-        artifact("org.testcontainers:testcontainers-jdbc", "rules_jooq_flyway_codegen_maven"),
         artifact("org.xerial:sqlite-jdbc", "rules_jooq_flyway_codegen_maven"),
     ],
 )

@@ -23,7 +23,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Map;
 
 public class JooqBazelCodegen {
-    enum DbType {POSTGRES, MYSQL, MARIADB, SQLITE}
+    enum DbType {POSTGRES, MYSQL, MARIADB, SQLITE, PROVIDED}
 
     @Parameter(names = "--output_file_name", required = true)
     Path outputSourceJar;
@@ -70,6 +70,9 @@ public class JooqBazelCodegen {
     }
 
     private JdbcProvider getJDBCDatabase() {
+        if (dbContainerType == DbType.PROVIDED) {
+            return new ExistingJdbcProvider();
+        }
         if (dbContainerType == DbType.SQLITE) {
             return new SqliteJdbcProvider();
         }
@@ -77,7 +80,7 @@ public class JooqBazelCodegen {
             case POSTGRES -> new PostgreSQLContainer(resolveContainer(dockerImage, PostgreSQLContainer.IMAGE));
             case MYSQL -> new MySQLContainer(resolveContainer(dockerImage, MySQLContainer.NAME));
             case MARIADB -> new MariaDBContainer(resolveContainer(dockerImage, MariaDBContainer.NAME));
-            case SQLITE -> throw new IllegalStateException("already returned");
+            case SQLITE, PROVIDED -> throw new IllegalStateException("already returned");
         };
         return new TestContainersJdbcProvider(container).start();
     }
@@ -95,13 +98,15 @@ public class JooqBazelCodegen {
         Configuration configuration =
                 GenerationTool.load(new FileInputStream(jooqConfigXmlPath));
         configuration.getGenerator().getTarget().setDirectory(codegenOutputDir.toAbsolutePath().toString());
-
-        Jdbc jdbc = new Jdbc();
-        jdbc.setDriver(jdbcContainer.getDriverClassName());
-        jdbc.setUrl(jdbcContainer.getJdbcUrl());
-        jdbc.setUser(jdbcContainer.getUsername());
-        jdbc.setPassword(jdbcContainer.getPassword());
-        configuration.setJdbc(jdbc);
+        if (dbContainerType != DbType.PROVIDED) {
+            // jdbc config is expected to be provided via config file if using the provided type
+            Jdbc jdbc = new Jdbc();
+            jdbc.setDriver(jdbcContainer.getDriverClassName());
+            jdbc.setUrl(jdbcContainer.getJdbcUrl());
+            jdbc.setUser(jdbcContainer.getUsername());
+            jdbc.setPassword(jdbcContainer.getPassword());
+            configuration.setJdbc(jdbc);
+        }
         return configuration;
     }
 
@@ -118,11 +123,14 @@ public class JooqBazelCodegen {
         } else {
             flyway = Flyway.configure();
         }
-        flyway.dataSource(
-                        jdbcContainer.getJdbcUrl(),
-                        jdbcContainer.getUsername(),
-                        jdbcContainer.getPassword())
-                .load()
+        if (dbContainerType != DbType.PROVIDED) {
+            // jdbc config is expected to be provided via config file if using the provided type
+            flyway = flyway.dataSource(
+                    jdbcContainer.getJdbcUrl(),
+                    jdbcContainer.getUsername(),
+                    jdbcContainer.getPassword());
+        }
+        flyway.load()
                 .migrate();
     }
 
